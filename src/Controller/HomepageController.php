@@ -12,7 +12,10 @@ class HomepageController extends AbstractController
     #[Route('/', methods: ['GET'], name: 'app_homepage')]
     public function homepage(): Response
     {
-        return $this->render('homepage/homepage.html.twig');
+        return $this->render('homepage/homepage.html.twig', [
+            'info' => 'This is a Symfony app',
+            'numbers' => range(1, 10),
+        ]);
     }
 
 }

@@ -2,10 +2,20 @@
 
 namespace App\CarOffer;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class CarOffer
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private int $id;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
+    #[ORM\Column(type: 'integer')]
     private int $price;
 
     public function __construct(string $name, int $price)

@@ -13,7 +13,11 @@ class CarOfferController extends AbstractController
     #[Route('/add', name: 'add')]
     public function add(): Response
     {
-        return $this->render('@Admin/car-offer/add.html.twig');
+        $form = $this->createForm(CarOfferForm::class);
+
+        return $this->render('@Admin/car-offer/add.html.twig', [
+            'form' => $form,
+        ]);
     }
 
 }

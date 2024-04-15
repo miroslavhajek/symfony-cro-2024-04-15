@@ -4,3 +4,5 @@ twig:
     paths:
         'src/Admin/templates': Admin
         'src/App/templates': App
+    form_theme:
+        - 'bootstrap_5_layout.html.twig'

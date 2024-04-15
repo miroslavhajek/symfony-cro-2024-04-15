@@ -3,6 +3,7 @@
 namespace App\Admin\CarOffer;
 
 use App\CarOffer\CarOffer;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ class CarOfferController extends AbstractController
     #[Route('/add', name: 'add')]
     public function add(
         Request $request,
+        EntityManagerInterface $entityManager,
     ): Response
     {
         $carOfferRequest = new CarOfferRequest();
@@ -26,6 +28,10 @@ class CarOfferController extends AbstractController
                 $carOfferRequest->name,
                 $carOfferRequest->price,
             );
+
+            $entityManager->persist($carOffer);
+            $entityManager->flush();
+
             dd($carOffer);
         }
 

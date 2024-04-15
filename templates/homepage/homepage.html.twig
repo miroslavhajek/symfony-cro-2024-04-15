@@ -5,17 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Hello from Twig</h1>
-
-    {{ info }}
-
-    {% for number in numbers %}
-        <li>{{ number }}</li>
+    {% for carOffer in carOffers %}
+        <p>{{ carOffer.getName() }} - {{ carOffer.getPrice() }}</p>
     {% endfor %}
 
-    {% if rand > 50 %}
-        nad 50
-    {% else %}
-        do 50
-    {% endif %}
 {% endblock %}

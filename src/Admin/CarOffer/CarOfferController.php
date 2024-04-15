@@ -2,6 +2,7 @@
 
 namespace App\Admin\CarOffer;
 
+use App\CarOffer\CarOffer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,16 +18,16 @@ class CarOfferController extends AbstractController
     ): Response
     {
         $carOfferRequest = new CarOfferRequest();
-
         $form = $this->createForm(CarOfferForm::class, $carOfferRequest);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            dd($form->getData());
-
+            $carOffer = new CarOffer(
+                $carOfferRequest->name,
+                $carOfferRequest->price,
+            );
+            dd($carOffer);
         }
-
 
         return $this->render('@Admin/car-offer/add.html.twig', [
             'form' => $form,

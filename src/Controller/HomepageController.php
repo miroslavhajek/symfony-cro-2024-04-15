@@ -14,6 +14,7 @@ class HomepageController extends AbstractController
     {
         return $this->render('homepage/homepage.html.twig', [
             'info' => 'This is a Symfony app',
+            'rand' => random_int(1, 100),
             'numbers' => range(1, 10),
         ]);
     }

@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class HomepageController
+class HomepageController extends AbstractController
 {
 
     #[Route('/', methods: ['GET'], name: 'app_homepage')]
-    public function homepage()
+    public function homepage(): Response
     {
-        return new Response('<h1>Hello!</h1>');
+        return $this->render('homepage/homepage.html.twig');
     }
 
 }

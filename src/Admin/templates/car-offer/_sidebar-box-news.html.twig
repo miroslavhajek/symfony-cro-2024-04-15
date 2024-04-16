@@ -1,0 +1,6 @@
+<div>
+    {% set sidebarCarOffers = carOffersSidebar() %}
+    {% for carOffer in sidebarCarOffers %}
+        <em>{{ carOffer.getName() }}</em>
+    {% endfor %}
+</div>

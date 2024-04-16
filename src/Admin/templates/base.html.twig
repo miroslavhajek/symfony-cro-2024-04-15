@@ -17,5 +17,13 @@
         <div class="container mt-4">
             {% block body %}{% endblock %}
         </div>
+        <hr>
+        {{ include('@Admin/car-offer/_sidebar-box-news.html.twig') }}
+        <hr>
+        <div class="sidebar">
+            {% block sidebar %}
+                tady je sidebar
+            {% endblock %}
+        </div>
     </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Admin\CarOffer;
 
 use App\CarOffer\CarOffer;
+use App\CarOffer\CarOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,16 +16,10 @@ class CarOfferController extends AbstractController
 
     #[Route('/', name: 'index')]
     public function index(
-        EntityManagerInterface $entityManager,
+        CarOfferRepository $carOfferRepository,
     ): Response
     {
-        /** @var CarOffer[] $carOffers */
-        $carOffers = $entityManager
-            ->createQueryBuilder()
-            ->select('carOffer')
-            ->from(CarOffer::class, 'carOffer')
-            ->addOrderBy('carOffer.name')
-            ->getQuery()->getResult();
+        $carOffers = $carOfferRepository->fetchAllCarOffers();
 
         return $this->render('@Admin/car-offer/index.html.twig', [
             'carOffers' => $carOffers,

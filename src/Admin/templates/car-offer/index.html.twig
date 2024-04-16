@@ -14,3 +14,15 @@
         {% endfor %}
     </table>
 {% endblock %}
+
+{% block sidebar %}
+    sidebar z car offer list
+    {% for carOffer in carOffers %}
+            <td>{{ carOffer.getName() }}</td>
+            <td>{{ carOffer.getPrice() }} Kč</td>
+    {% endfor %}
+
+    {% include('@Admin/car-offer/_sidebar-box-news.html.twig') with {
+        carOffers: carOffers
+    } only %}
+{% endblock %}

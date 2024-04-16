@@ -43,6 +43,8 @@ class CarOfferController extends AbstractController
                 $carOfferRequest->price,
             );
 
+            $this->addFlash('success', 'Car offer added successfully.');
+
             return $this->redirectToRoute('admin_car_offer_index');
         }
 
@@ -70,6 +72,8 @@ class CarOfferController extends AbstractController
                 $carOfferRequest->name,
                 $carOfferRequest->price,
             );
+
+            $this->addFlash('success', 'Car offer has been updated.');
 
             return $this->redirectToRoute('admin_car_offer_index');
         }

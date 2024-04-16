@@ -13,6 +13,12 @@ use Symfony\Component\Routing\Attribute\Route;
 class CarOfferController extends AbstractController
 {
 
+    #[Route('/', name: 'index')]
+    public function index(): Response
+    {
+        return $this->render('@Admin/car-offer/index.html.twig');
+    }
+
     #[Route('/add', name: 'add')]
     public function add(
         Request $request,

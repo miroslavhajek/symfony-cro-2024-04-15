@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\App\CarOffer\CarOfferDetail;
+namespace App\App\CarOffer;
 
 use App\CarOffer\CarOffer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

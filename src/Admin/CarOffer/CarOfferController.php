@@ -14,9 +14,21 @@ class CarOfferController extends AbstractController
 {
 
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(
+        EntityManagerInterface $entityManager,
+    ): Response
     {
-        return $this->render('@Admin/car-offer/index.html.twig');
+        /** @var CarOffer[] $carOffers */
+        $carOffers = $entityManager
+            ->createQueryBuilder()
+            ->select('carOffer')
+            ->from(CarOffer::class, 'carOffer')
+            ->addOrderBy('carOffer.name')
+            ->getQuery()->getResult();
+
+        return $this->render('@Admin/car-offer/index.html.twig', [
+            'carOffers' => $carOffers,
+        ]);
     }
 
     #[Route('/add', name: 'add')]
@@ -38,7 +50,7 @@ class CarOfferController extends AbstractController
             $entityManager->persist($carOffer);
             $entityManager->flush();
 
-            dd($carOffer);
+            return $this->redirectToRoute('admin_car_offer_index');
         }
 
         return $this->render('@Admin/car-offer/add.html.twig', [

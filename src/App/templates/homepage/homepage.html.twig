@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block body %}
+    <h1>List of Car Offers</h1>
+
     {% for carOffer in carOffers %}
         <p>{{ carOffer.getName() }} - {{ carOffer.getPrice() }}</p>
     {% endfor %}

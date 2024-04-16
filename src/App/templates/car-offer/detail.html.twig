@@ -6,4 +6,9 @@
     <h1 class="test-name">{{ carOffer.getName() }}</h1>
 
     <h2 class="test-price">{{ carOffer.getPrice() }} Kč</h2>
+
+    <div class="col-3">
+        <h3>Inquiry</h3>
+        {{ form(inquiryForm) }}
+    </div>
 {% endblock %}

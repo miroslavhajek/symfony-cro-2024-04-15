@@ -55,14 +55,23 @@ class CarOfferController extends AbstractController
     public function edit(
         CarOffer $carOffer,
         Request $request,
+        CarOfferFacade $carOfferFacade,
     ): Response
     {
         $carOfferRequest = CarOfferRequest::fromCarOffer($carOffer);
-        $form = $this->createForm(CarOfferForm::class, $carOfferRequest);
+        $form = $this->createForm(CarOfferForm::class, $carOfferRequest, [
+            'is_update' => true,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($carOfferRequest);
+            $carOfferFacade->updateCarOffer(
+                $carOffer,
+                $carOfferRequest->name,
+                $carOfferRequest->price,
+            );
+
+            return $this->redirectToRoute('admin_car_offer_index');
         }
 
         return $this->render('@Admin/car-offer/edit.html.twig', [

@@ -25,8 +25,22 @@ class CarOfferFacade
         $this->entityManager->persist($carOffer);
         $this->entityManager->flush();
 
-        $this->emailSender->sendCarofferCreatedNotification($carOffer);
+        //$this->emailSender->sendCarofferCreatedNotification($carOffer);
 
         return $carOffer;
+    }
+
+    public function updateCarOffer(
+        CarOffer $carOffer,
+        string $name,
+        int $price,
+    ): void
+    {
+        $carOffer->updateData(
+            $name,
+            $price,
+        );
+
+        $this->entityManager->flush();
     }
 }

@@ -39,4 +39,13 @@ class CarOffer
         return $this->price;
     }
 
+    public function updateData(
+        string $name,
+        int $price,
+    ): void
+    {
+        $this->name = $name;
+        $this->price = $price;
+    }
+
 }

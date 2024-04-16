@@ -16,7 +16,7 @@ final class CarOfferDetailController extends AbstractController
     #[Route('/nabidka/{id}', methods: ['GET', 'POST'], name: 'car_offer_detail')]
     public function __invoke(
         CarOffer $carOffer,
-        //InquiryFacade $inquiryFacade,
+        InquiryFacade $inquiryFacade,
         Request $request,
     ): Response
     {
@@ -25,14 +25,13 @@ final class CarOfferDetailController extends AbstractController
         $inquiryForm->handleRequest($request);
 
         if ($inquiryForm->isSubmitted() && $inquiryForm->isValid()) {
-            dd($inquryRequest);
-            /*$inquiry = $inquiryFacade->makeInquiry(
+            $inquiry = $inquiryFacade->makeInquiry(
                 $carOffer,
                 $inquryRequest->name,
                 $inquryRequest->email,
                 $inquryRequest->phone,
                 $inquryRequest->note,
-            );*/
+            );
             $this->addFlash('success', 'Inquiry submitted');
 
             return $this->redirectToRoute('car_offer_detail', [

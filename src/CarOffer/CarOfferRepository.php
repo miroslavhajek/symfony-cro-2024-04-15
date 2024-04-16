@@ -12,6 +12,17 @@ class CarOfferRepository
     {
     }
 
+    public function findCarOfferById(int $id): ?CarOffer
+    {
+        return $this->entityManager
+            ->createQueryBuilder()
+            ->select('carOffer')
+            ->from(CarOffer::class, 'carOffer')
+            ->andWhere('carOffer.id = :id')->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult();
+    }
+
     /**
      * @return \App\CarOffer\CarOffer[]
      */

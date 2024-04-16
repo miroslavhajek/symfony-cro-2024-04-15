@@ -51,4 +51,24 @@ class CarOfferController extends AbstractController
         ]);
     }
 
+    #[Route('/edit/{id<\d+>}', name: 'edit')]
+    public function edit(
+        CarOffer $carOffer,
+        Request $request,
+    ): Response
+    {
+        $carOfferRequest = CarOfferRequest::fromCarOffer($carOffer);
+        $form = $this->createForm(CarOfferForm::class, $carOfferRequest);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($carOfferRequest);
+        }
+
+        return $this->render('@Admin/car-offer/edit.html.twig', [
+            'carOffer' => $carOffer,
+            'form' => $form,
+        ]);
+    }
+
 }

@@ -10,6 +10,11 @@
             <tr>
                 <td>{{ carOffer.getName() }}</td>
                 <td>{{ carOffer.getPrice() }} Kč</td>
+                <td>
+                    <a href="{{ path('admin_car_offer_edit', {
+                        'id': carOffer.getId()
+                    }) }}">Edit</a>
+                </td>
             </tr>
         {% endfor %}
     </table>

@@ -21,10 +21,7 @@ class CarOfferTest extends TestCase
 
     public function testUpdateData(): void
     {
-        $carOffer = new CarOffer(
-            'Škoda Octavia 1.6 TDI',
-            199999,
-        );
+        $carOffer = CarOfferFixture::createCarOffer();
 
         $carOffer->updateData(
             'Škoda Fabia 1.6 TDI',

@@ -1,0 +1,9 @@
+{% extends '@App/base.html.twig' %}
+
+{% block title %}{{ carOffer.getName() }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1 class="test-name">{{ carOffer.getName() }}</h1>
+
+    <h2 class="test-price">{{ carOffer.getPrice() }} Kč</h2>
+{% endblock %}

@@ -9,8 +9,10 @@
 
     {% for carOffer in carOffers %}
         <p class="test-car-offer">
+            <a href="{{ path('car_offer_detail', {'id': carOffer.getId()}) }}">
             <span class="test-name">{{ carOffer.getName() }}</span>
             - {{ carOffer.getPrice() }}
+            </a>
         </p>
     {% endfor %}
 

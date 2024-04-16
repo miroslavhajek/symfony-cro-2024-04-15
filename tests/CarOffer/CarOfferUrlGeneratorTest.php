@@ -2,19 +2,23 @@
 
 namespace App\CarOffer;
 
-use PHPUnit\Framework\TestCase;
+use App\App\Fixtures\CarOfferDatabaseFixture;
+use App\IntegrationDatabaseTestCase;
+use PHPUnit\Framework\Assert;
 
-class CarOfferUrlGeneratorTest extends TestCase
+class CarOfferUrlGeneratorTest extends IntegrationDatabaseTestCase
 {
 
     public function testGenerator(): void
     {
-        $this->markTestIncomplete('@todo!');
+        /** @var CarOfferUrlGenerator $carOfferUrlGenerator */
+        $carOfferUrlGenerator = self::getContainer()->get(CarOfferUrlGenerator::class);
 
-        //$xy = self::containe;
-
-        $x = new CarOfferUrlGenerator(
-            $this->createMock()
+        Assert::assertSame(
+            '/admin/car-offer/edit/2',
+            $carOfferUrlGenerator->generateCarOfferEdit(
+                CarOfferDatabaseFixture::$skodaFabia10TSI
+            )
         );
     }
 

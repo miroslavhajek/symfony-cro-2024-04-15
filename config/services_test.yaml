@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  App\App\Fixtures\:
+    resource: '../tests/App/Fixtures/*'
+
+  test.doctrine.fixtures.loader: '@doctrine.fixtures.loader'
+
+  App\CarOffer\CarOfferUrlGenerator:
+    public: true

@@ -8,7 +8,10 @@
     <h1>List of Car Offers</h1>
 
     {% for carOffer in carOffers %}
-        <p>{{ carOffer.getName() }} - {{ carOffer.getPrice() }}</p>
+        <p class="test-car-offer">
+            <span class="test-name">{{ carOffer.getName() }}</span>
+            - {{ carOffer.getPrice() }}
+        </p>
     {% endfor %}
 
 {% endblock %}

@@ -2,8 +2,9 @@
 
 namespace App\App\Homepage;
 
+use App\IntegrationDatabaseTestCase;
+use App\WebTestCase;
 use PHPUnit\Framework\Assert;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class HomepageControllerTest extends WebTestCase
 {
@@ -16,6 +17,13 @@ class HomepageControllerTest extends WebTestCase
         Assert::assertSame(200, $client->getResponse()->getStatusCode());
 
         Assert::assertSame('List of Car Offers', $crawler->filter('h1')->text());
+
+        $carOffers = $crawler->filter('.test-car-offer');
+        Assert::assertCount(2, $carOffers);
+        Assert::assertSame(
+            'Škoda Fabia 1.0 TSI Ambition',
+            $carOffers->first()->filter('.test-name')->text()
+        );
     }
 
 }

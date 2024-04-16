@@ -3,6 +3,7 @@
 namespace App\Admin\CarOffer;
 
 use App\CarOffer\CarOffer;
+use App\CarOffer\CarOfferFacade;
 use App\CarOffer\CarOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,7 +30,7 @@ class CarOfferController extends AbstractController
     #[Route('/add', name: 'add')]
     public function add(
         Request $request,
-        EntityManagerInterface $entityManager,
+        CarOfferFacade $carOfferFacade,
     ): Response
     {
         $carOfferRequest = new CarOfferRequest();
@@ -37,13 +38,10 @@ class CarOfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $carOffer = new CarOffer(
+            $carOffer = $carOfferFacade->createCarOffer(
                 $carOfferRequest->name,
                 $carOfferRequest->price,
             );
-
-            $entityManager->persist($carOffer);
-            $entityManager->flush();
 
             return $this->redirectToRoute('admin_car_offer_index');
         }

@@ -3,6 +3,8 @@
 {% block body %}
     <h1>Car offers</h1>
 
+    <a href="{{ path('admin_car_offer_add') }}">Add</a>
+
     <table class="table">
         {% for carOffer in carOffers %}
             <tr>
